@@ -1,0 +1,25 @@
+ion-content {
+  --ion-background-color:#0D1117;
+}
+
+#search {
+  border-radius: 10px;
+  margin: 20px 0px 40px 0px;
+  text-indent: 20px;
+  font-size: 1.2rem;
+
+  background-color: #E8EAEA;
+  color: #4F4F4F;
+  box-shadow: 13px 16px 16px -6px rgba(255, 255, 255, 0.25);
+}
+
+.project {
+  display: grid;
+  gap: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+  border-bottom: 2px solid gray;
+  background-color: #111924;
+}

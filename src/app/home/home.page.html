@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      GitHub Explorer
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-input id="search" placeholder="Pesquisar usúario" [(ngModel)]="searchName"
+  (ionChange)="onSearchChange()"></ion-input>
+
+  <div class="project" *ngFor="let project of projects">
+    <ion-title > {{project.name}} </ion-title>
+
+    <p>{{project.description}}</p>
+  </div>
+
+</ion-content>

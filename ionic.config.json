@@ -1,0 +1,7 @@
+{
+  "name": "git-hub-api",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
