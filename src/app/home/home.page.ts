@@ -67,8 +67,8 @@ export class HomePage {
 
   sortProjectsDate(projects: any[]) {
     let sorted = projects.sort((a: any, b: any) => {
-      if (a.created_at < b.created_at) return -1;
-      if (a.created_at > b.created_at) return 1;
+      if (a.created_at < b.created_at) return 1;
+      if (a.created_at > b.created_at) return -1;
       return 0;
     });
 
