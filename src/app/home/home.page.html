@@ -7,6 +7,8 @@
   <ion-input id="search" placeholder="Pesquisar usúario" [(ngModel)]="searchName"
     (ionChange)="onSearchChange()"></ion-input>
 
+  
+
   <div id="box-content" *ngIf="projects.length > 0">
     <div id="box-avatar">
       <ion-title>
@@ -16,13 +18,21 @@
       <img [src]="ownerAvatar" alt="">
     </div>
 
+    <ion-button (click)="sortProjectsDate(projects)">
+      Ordenar por data
+    </ion-button>
+
+    <ion-button (click)="sortProjectsDefault(projects)">
+      Ordem Alfabetica
+    </ion-button>
+
     <div class="project" *ngFor="let project of projects" lines="none" button (click)="openProject(project)">
 
       <div class="head">
         <ion-title class="project-name">
           {{project.name}}
         </ion-title>
-        <span class="date">{{ formatDate(project.pushed_at) }}</span>
+        <span class="date">{{ formatDate(project.created_at) }}</span>
       </div>
 
       <ion-title size="small" color="medium" *ngIf="project.description" class="description">

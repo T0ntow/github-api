@@ -10,11 +10,12 @@ export class HomePage {
 
   projects: any[] = [];
   searchName: string = '';
-  notFound!: boolean ;
+  notFound!: boolean;
   ownerAvatar: string = '';
   loginName: string = '';
 
   constructor() {
+    this.searchUser();
   }
 
   formatDate(date: string): string {
@@ -23,11 +24,11 @@ export class HomePage {
   }
 
   async searchUser() {
-    this.projects = [];
-    const APIResponse = await fetch(`https://api.github.com/users/${this.searchName} /repos`);
+    const APIResponse = await fetch(`https://api.github.com/users/T0ntow/repos`);
 
     if (APIResponse.status === 200) {
       const data = await APIResponse.json();
+
       this.getProjects(data);
 
       this.ownerAvatar = data[0].owner.avatar_url;
@@ -43,9 +44,38 @@ export class HomePage {
   }
 
   getProjects(data: any) {
+    this.projects = [];
+
     data.forEach((element: any) => {
       this.projects.push(element);
     });
+  }
+
+  sortProjectsDefault(projects: any[]) {
+    let sorted = projects.sort((a: any, b: any) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+
+      if (nameA < nameB) return -1;
+      if (nameA > nameB) return 1;
+      return 0;
+    });
+
+    this.projects = [];
+    this.projects = sorted;
+    return sorted;
+  }
+
+  sortProjectsDate(projects: any[]) {
+    let sorted = projects.sort((a: any, b: any) => {
+      if (a.created_at < b.created_at) return -1;
+      if (a.created_at > b.created_at) return 1;
+      return 0;
+    });
+
+    this.projects = [];
+    this.projects = sorted;
+    return sorted;
   }
 
   onSearchChange() {
