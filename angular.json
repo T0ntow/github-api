@@ -21,6 +21,11 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               {
+                "glob": "_redirects",
+                "input": "src",
+                "output": "/"
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
@@ -136,7 +141,8 @@
   "cli": {
     "schematicCollections": [
       "@ionic/angular-toolkit"
-    ]
+    ],
+    "analytics": "76a57394-349b-4464-bf77-77873e61e234"
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {
