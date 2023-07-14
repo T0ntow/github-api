@@ -15,7 +15,6 @@ export class HomePage {
   loginName: string = '';
 
   constructor() {
-    this.searchUser();
   }
 
   formatDate(date: string): string {
@@ -24,7 +23,7 @@ export class HomePage {
   }
 
   async searchUser() {
-    const APIResponse = await fetch(`https://api.github.com/users/T0ntow/repos`);
+    const APIResponse = await fetch(`https://api.github.com/users/${this.searchName} /repos`);
 
     if (APIResponse.status === 200) {
       const data = await APIResponse.json();
@@ -76,10 +75,6 @@ export class HomePage {
     this.projects = [];
     this.projects = sorted;
     return sorted;
-  }
-
-  onSearchChange() {
-    this.searchUser();
   }
 
   openProject(project: any) {

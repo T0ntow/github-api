@@ -5,9 +5,7 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <ion-title class="ion-text-center" color="tertiary" id="title">GitHub Explorer</ion-title>
   <ion-input id="search" placeholder="Pesquisar usúario" [(ngModel)]="searchName"
-    (ionChange)="onSearchChange()"></ion-input>
-
-  
+    (ionChange)="searchUser()"></ion-input>
 
   <div id="box-content" *ngIf="projects.length > 0">
     <div id="box-avatar">
