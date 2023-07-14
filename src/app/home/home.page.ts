@@ -11,6 +11,8 @@ export class HomePage {
   projects: any[] = [];
   searchName: string = '';
   notFound!: boolean ;
+  ownerAvatar: string = '';
+  loginName: string = '';
 
   constructor() {
   }
@@ -22,7 +24,7 @@ export class HomePage {
 
   async searchUser() {
     this.projects = [];
-    const APIResponse = await fetch(`https://api.github.com/users/${this.searchName}/repos`);
+    const APIResponse = await fetch(`https://api.github.com/users/${this.searchName} /repos`);
 
     console.log(APIResponse);
 
@@ -30,6 +32,10 @@ export class HomePage {
     if (APIResponse.status === 200) {
       const data = await APIResponse.json();
       this.getProjects(data);
+
+      this.ownerAvatar = data[0].owner.avatar_url;
+      this.loginName = data[0].owner.login;
+
       this.notFound = false;
 
     } else if (APIResponse.status === 404) {
@@ -54,11 +60,7 @@ export class HomePage {
   }
 
   openProject(project: any) {
-    const fullName = project.full_name;
-    const url = `https://github.com/${fullName}`;
-
-    console.log(url);
-    
+    const url = project.html_url;
     window.open(url, '_blank');
   }
 

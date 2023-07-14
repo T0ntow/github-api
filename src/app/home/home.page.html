@@ -1,14 +1,31 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Lakki+Reddy&family=Lilita+One&display=swap');
+</style>
+
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-title class="ion-text-center" style="font-size: 2rem;" color="tertiary">GitHub Explorer</ion-title>
+  <ion-title class="ion-text-center" color="tertiary" id="title">GitHub Explorer</ion-title>
   <ion-input id="search" placeholder="Pesquisar usúario" [(ngModel)]="searchName"
     (ionChange)="onSearchChange()"></ion-input>
 
-  <ion-card>
+  <div id="box-content" *ngIf="projects.length > 0">
+    <div id="box-avatar">
+      <ion-title>
+        {{loginName}}
+      </ion-title>
+
+      <img [src]="ownerAvatar" alt="">
+    </div>
 
     <div class="project" *ngFor="let project of projects" lines="none" button (click)="openProject(project)">
-      <ion-title>{{project.name}}</ion-title>
 
-      <ion-title size="small" color="medium" *ngIf="project.description">
+      <div class="head">
+        <ion-title class="project-name">
+          {{project.name}}
+        </ion-title>
+        <span class="date">{{ formatDate(project.pushed_at) }}</span>
+      </div>
+
+      <ion-title size="small" color="medium" *ngIf="project.description" class="description">
         {{project.description}}
       </ion-title>
 
@@ -17,17 +34,16 @@
 
         <span class="stars">
           <ion-icon id="start-icon" name="star-outline"></ion-icon>
-          Stars:
+          Stars: {{project.stargazers_count}}
         </span>
       </div>
 
-      <span class="date">{{ formatDate(project.pushed_at) }}</span>
 
     </div>
-  </ion-card>
+  </div>
 
-  <ion-title *ngIf="notFound === true" color="warning">
-    Usuário não encontrado ou sem projetos
+  <ion-title *ngIf="notFound === true" color="danger">
+    Usuário não encontrado
   </ion-title>
 
 

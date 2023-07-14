@@ -1,21 +1,58 @@
+* {
+  font-family: "Lilita One", cursive;
+}
+
 ion-content {
   --ion-background-color: #0d1117;
+
+  #title {
+    font-size: 2rem;
+  }
 }
 
 #search {
-  border-radius: 10px;
-  margin: 20px 0px 40px 0px;
+  border-radius: 10px 10px 0px 0px;
+  margin: 30px 0px;
   text-indent: 20px;
   font-size: 1.2rem;
 
   background-color: #182843;
   color: #ffffff;
-  box-shadow: 5px 10px 10px -6px rgba(255, 255, 255, 0.25);
+  box-shadow: 5px 10px 10px -6px #ffffff40;
+
+  --border-color: #ffffff; // default underline color
+  --highlight-color-invalid: #ff0000; // invalid underline color
+  --highlight-color-valid: #1273e7; // valid underline color
 }
 
-ion-card {
-  padding: 10px;
+#box-avatar {
+  width: clamp(60vw, 40vw, 80vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
+  margin: 10px auto;
+
+  img {
+    border-radius: 50%;
+
+    border: 2px solid #fff;
+  }
+
+  ion-title {
+    padding: 10px;
+    font-size: 1.5rem;
+    color: #fff;
+    letter-spacing: 2px;
+
+    /* deslocamento-x | deslocamento-y | raio-de-desfoque | cor */
+    text-shadow: 2px 1px 3px gray;
+  }
+}
+
+#box-content {
+  
   .project {
     border-radius: 10px;
     margin-bottom: 10px;
@@ -28,23 +65,45 @@ ion-card {
     color: #fff;
 
     position: relative;
+    overflow: hidden;
 
-    ion-title {
-      margin-bottom: 8px;
+    .head {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      .project-name {
+        margin-bottom: 8px;
+      }
+
+      @media screen and (max-width: 550px) {
+        .project-name {
+          font-size: 1rem;
+        }
+      }
+
+      .date {
+        font-size: 0.85rem;
+        color: gray;
+      }
     }
 
-    .date {
-      position: absolute;
-      top: 40%;
-      right: 10px;
+    .description {
+      margin-bottom: 5px;
+    }
+  
+    @media screen and (max-width: 550px) {
+      .description {
+        font-size: 0.9rem;
+      }
     }
 
     .box-details {
       padding: 0px 20px;
-
       display: flex;
 
-      .language, .stars {
+      .language,
+      .stars {
         border-radius: 5px;
         border: 1px solid rgb(206, 206, 206);
         padding: 8px;
@@ -56,10 +115,17 @@ ion-card {
         margin-right: 10px;
       }
 
+      @media screen and (max-width: 550px) {
+        .language,
+        .stars {
+          font-size: 0.85rem;
+        }
+      }
+
       .stars {
         min-width: 90px;
         #start-icon {
-          width: 15px;  
+          width: 15px;
           height: 15px;
 
           color: gold;
@@ -68,13 +134,13 @@ ion-card {
     }
   }
 
+
   .project:hover {
     cursor: pointer;
     transition: all 0.3s ease;
     background-color: #182843;
   }
 
-  
   .project:active {
     background-color: #415e8e;
   }
