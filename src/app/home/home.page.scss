@@ -1,5 +1,5 @@
 ion-content {
-  --ion-background-color:#0D1117;
+  --ion-background-color: #0d1117;
 }
 
 #search {
@@ -8,18 +8,74 @@ ion-content {
   text-indent: 20px;
   font-size: 1.2rem;
 
-  background-color: #E8EAEA;
-  color: #4F4F4F;
-  box-shadow: 13px 16px 16px -6px rgba(255, 255, 255, 0.25);
+  background-color: #182843;
+  color: #ffffff;
+  box-shadow: 5px 10px 10px -6px rgba(255, 255, 255, 0.25);
 }
 
-.project {
-  display: grid;
-  gap: 20px;
+ion-card {
   padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
 
-  border-bottom: 2px solid gray;
-  background-color: #111924;
+  .project {
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+    border-bottom: 2px solid gray;
+    background-color: #131d2d;
+    color: #fff;
+
+    position: relative;
+
+    ion-title {
+      margin-bottom: 8px;
+    }
+
+    .date {
+      position: absolute;
+      top: 40%;
+      right: 10px;
+    }
+
+    .box-details {
+      padding: 0px 20px;
+
+      display: flex;
+
+      .language, .stars {
+        border-radius: 5px;
+        border: 1px solid rgb(206, 206, 206);
+        padding: 8px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        margin-right: 10px;
+      }
+
+      .stars {
+        min-width: 90px;
+        #start-icon {
+          width: 15px;  
+          height: 15px;
+
+          color: gold;
+        }
+      }
+    }
+  }
+
+  .project:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #182843;
+  }
+
+  
+  .project:active {
+    background-color: #415e8e;
+  }
 }

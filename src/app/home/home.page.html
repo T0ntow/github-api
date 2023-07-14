@@ -1,20 +1,34 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      GitHub Explorer
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true" class="ion-padding">
-
+  <ion-title class="ion-text-center" style="font-size: 2rem;" color="tertiary">GitHub Explorer</ion-title>
   <ion-input id="search" placeholder="Pesquisar usúario" [(ngModel)]="searchName"
-  (ionChange)="onSearchChange()"></ion-input>
+    (ionChange)="onSearchChange()"></ion-input>
 
-  <div class="project" *ngFor="let project of projects">
-    <ion-title > {{project.name}} </ion-title>
+  <ion-card>
 
-    <p>{{project.description}}</p>
-  </div>
+    <div class="project" *ngFor="let project of projects" lines="none" button (click)="openProject(project)">
+      <ion-title>{{project.name}}</ion-title>
+
+      <ion-title size="small" color="medium" *ngIf="project.description">
+        {{project.description}}
+      </ion-title>
+
+      <div class="box-details">
+        <span class="language">Language: {{project.language}} </span>
+
+        <span class="stars">
+          <ion-icon id="start-icon" name="star-outline"></ion-icon>
+          Stars:
+        </span>
+      </div>
+
+      <span class="date">{{ formatDate(project.pushed_at) }}</span>
+
+    </div>
+  </ion-card>
+
+  <ion-title *ngIf="notFound === true" color="warning">
+    Usuário não encontrado ou sem projetos
+  </ion-title>
+
 
 </ion-content>
