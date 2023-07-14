@@ -26,9 +26,6 @@ export class HomePage {
     this.projects = [];
     const APIResponse = await fetch(`https://api.github.com/users/${this.searchName} /repos`);
 
-    console.log(APIResponse);
-
-
     if (APIResponse.status === 200) {
       const data = await APIResponse.json();
       this.getProjects(data);
@@ -41,8 +38,7 @@ export class HomePage {
     } else if (APIResponse.status === 404) {
       this.notFound = true;
     } else {
-      console.log("BO");
-      
+      console.log("Erro ao buscar usuario");
     }
   }
 
@@ -50,13 +46,10 @@ export class HomePage {
     data.forEach((element: any) => {
       this.projects.push(element);
     });
-
-    console.log(this.projects);
   }
 
   onSearchChange() {
     this.searchUser();
-    console.log("this.searchName", this.searchName);
   }
 
   openProject(project: any) {
