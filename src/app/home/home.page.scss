@@ -11,7 +11,7 @@ ion-content {
 }
 
 #search {
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
   margin: 30px 0px;
   text-indent: 20px;
   font-size: 1.2rem;
@@ -25,34 +25,87 @@ ion-content {
   --highlight-color-valid: #1273e7; // valid underline color
 }
 
+#not-found-title {
+  transition: all .5s ease-in-out;
+}
 #box-avatar {
-  width: clamp(60vw, 40vw, 80vw);
+  padding: 10px;
+  width: 45vw;
+  min-width: 310px;
+
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border-radius: 10px;
 
   margin: 10px auto;
 
-  img {
-    border-radius: 50%;
+  background-color: #182843;
 
+  img {
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
     border: 2px solid #fff;
   }
 
   ion-title {
     padding: 10px;
-    font-size: 1.5rem;
+
+    font-size: clamp(15px, 1.5vw, 1.7vw);
     color: #fff;
     letter-spacing: 2px;
 
     /* deslocamento-x | deslocamento-y | raio-de-desfoque | cor */
     text-shadow: 2px 1px 3px gray;
   }
+
+  #localization {
+    font-size: 1.1rem;
+  }
+
+  #box-followers {
+    display: flex;
+    width: 100%;
+
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+
+    #line {
+      top: 40%;
+
+      position: absolute;
+      background-color: #fff;
+      width: 1px;
+      height: 50%;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      gap: 0.5rem;
+
+      ion-label {
+        font-size: 1.2rem;
+      }
+
+      span {
+        padding: 10px;
+        font-size: 18px;
+        background-color: rgb(88, 139, 193);
+        border-radius: 5px;
+        width: clamp(100px, 10vw, 150px);
+        text-align: center;
+      }
+    }
+  }
 }
 
 #box-content {
-  
   .project {
     border-radius: 10px;
     margin-bottom: 10px;
@@ -91,7 +144,7 @@ ion-content {
     .description {
       margin-bottom: 5px;
     }
-  
+
     @media screen and (max-width: 550px) {
       .description {
         font-size: 0.9rem;
@@ -124,7 +177,7 @@ ion-content {
 
       .stars {
         min-width: 90px;
-        #start-icon {
+        #star-icon {
           width: 15px;
           height: 15px;
 
@@ -134,6 +187,41 @@ ion-content {
     }
   }
 
+  #box-buttons {
+    margin: 10px 0px;
+    .button {
+      color: #000000;
+      border-radius: 5px;
+
+      width: clamp(140px, 20vw, 200px);
+    }
+
+    .button.active {
+      transition: ease all 0.5s ease-in-out;
+      color: #fff; 
+      font-weight: bold; 
+
+      -webkit-box-shadow: 3px 3px 10px -2px #ffffff7d;
+      -moz-box-shadow: 3px 3px 10px -2px #ffffff7d;
+      box-shadow: 3px 5px 10px -2px #ffffff7d;
+    }
+
+    .button:first-child {
+      margin-right: 15px;
+    }
+  }
+
+  @media screen and (max-width: 740px) {
+    #box-buttons {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+
+      .button {
+        font-size: 0.8rem;
+      }
+    }
+  }
 
   .project:hover {
     cursor: pointer;

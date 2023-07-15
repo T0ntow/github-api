@@ -4,25 +4,54 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <ion-title class="ion-text-center" color="tertiary" id="title">GitHub Explorer</ion-title>
+
   <ion-input id="search" placeholder="Pesquisar usúario" [(ngModel)]="searchName"
     (ionChange)="searchUser()"></ion-input>
 
   <div id="box-content" *ngIf="projects.length > 0">
+
     <div id="box-avatar">
+
       <ion-title>
-        {{loginName}}
+        {{userName}}
       </ion-title>
 
       <img [src]="ownerAvatar" alt="">
+
+      <ion-title id="localization" *ngIf="location">
+        <ion-icon name="location"></ion-icon>
+        {{location}}
+      </ion-title>
+
+      <div id="box-followers">
+
+        <div>
+          <ion-label>Seguidores</ion-label>
+          <span>
+            {{followersCount}}
+          </span>
+        </div>
+        <div id="line"></div>
+
+        <div>
+          <ion-label>Seguindo</ion-label>
+          <span>
+            {{followingCount}}
+          </span>
+        </div>
+
+      </div>
+
     </div>
 
-    <ion-button (click)="sortProjectsDate(projects)">
-      Ordenar por data
-    </ion-button>
-
-    <ion-button (click)="sortProjectsDefault(projects)">
-      Ordem Alfabetica
-    </ion-button>
+    <div id="box-buttons">
+      <ion-button class="button" [class.active]="buttonActive"  (click)="sortProjectsDefault(projects)">
+        Ordem Alfabetica
+      </ion-button>
+      <ion-button class="button" [class.active]="!buttonActive" (click)="sortProjectsDate(projects)">
+        Ordenar por data
+      </ion-button>
+    </div>
 
     <div class="project" *ngFor="let project of projects" lines="none" button (click)="openProject(project)">
 
@@ -41,7 +70,7 @@
         <span class="language">Language: {{project.language}} </span>
 
         <span class="stars">
-          <ion-icon id="start-icon" name="star-outline"></ion-icon>
+          <ion-icon id="star-icon" name="star"></ion-icon>
           Stars: {{project.stargazers_count}}
         </span>
       </div>
@@ -50,8 +79,12 @@
     </div>
   </div>
 
-  <ion-title *ngIf="notFound === true" color="danger">
+  <ion-title *ngIf="notFound === true" color="danger" id="not-found-title">
     Usuário não encontrado
+  </ion-title>
+
+  <ion-title *ngIf="notFound === false && projects.length === 0" color="warning" id="not-found-title">
+    Sem projetos
   </ion-title>
 
 

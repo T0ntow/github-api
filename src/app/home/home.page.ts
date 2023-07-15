@@ -12,7 +12,13 @@ export class HomePage {
   searchName: string = '';
   notFound!: boolean;
   ownerAvatar: string = '';
-  loginName: string = '';
+  userName: string = '';
+
+  followersCount?: number;
+  followingCount?: number;
+  location?: string;
+
+  buttonActive: boolean = true;
 
   constructor() {
   }
@@ -23,22 +29,32 @@ export class HomePage {
   }
 
   async searchUser() {
-    const APIResponse = await fetch(`https://api.github.com/users/${this.searchName} /repos`);
+    const APIResponse = await fetch(`https://api.github.com/users/${this.searchName}/repos`);
+    const APIReponseUser = await fetch(`https://api.github.com/users/${this.searchName}`);
 
-    if (APIResponse.status === 200) {
+    if (APIReponseUser.status === 200) {
       const data = await APIResponse.json();
+      const dataUser = await APIReponseUser.json();
 
       this.getProjects(data);
 
-      this.ownerAvatar = data[0].owner.avatar_url;
-      this.loginName = data[0].owner.login;
+      this.ownerAvatar = dataUser.avatar_url;
+      this.userName = dataUser.name;
+      this.followersCount = dataUser.followers;
+      this.followingCount = dataUser.following;
+      this.location = dataUser.location;
 
       this.notFound = false;
 
     } else if (APIResponse.status === 404) {
       this.notFound = true;
+      this.projects = [];
+    }
+    else if (APIResponse.status === 403) {
+      console.error("Muitas requisições");
+
     } else {
-      console.log("Erro ao buscar usuario");
+      console.error("Erro ao buscar usuario");
     }
   }
 
@@ -62,6 +78,9 @@ export class HomePage {
 
     this.projects = [];
     this.projects = sorted;
+
+    this.buttonActive = true;
+
     return sorted;
   }
 
@@ -74,6 +93,9 @@ export class HomePage {
 
     this.projects = [];
     this.projects = sorted;
+
+    this.buttonActive = false;
+
     return sorted;
   }
 
